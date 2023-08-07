@@ -1,34 +1,24 @@
 #include <stdio.h>
 
-// 定義最大陣列大小
-#define MAX_SIZE 100
-
-// 新增元素到動態陣列尾端
-void append(int* array[], int* size, int value) {
-    // 當動態陣列已滿，不再新增元素
-    if (*size >= MAX_SIZE) {
-        printf("動態陣列已滿，不可新增元素。\n");
-        return;
-    }
-
-    (*array)[*size] = value;
-    (*size)++;
-}
-
 int main() {
-    int dynamicArray[MAX_SIZE]; // 動態陣列的起始位址
-    int arraySize = 0; // 動態陣列的大小
+    int scores[5]; // 儲存五門課程的成績
+    int *ptr; // 指向成績陣列的指標
+    int total = 0; // 總分
 
-    append(&dynamicArray, &arraySize, 1); // 新增元素 1
-    append(&dynamicArray, &arraySize, 2); // 新增元素 2
-    append(&dynamicArray, &arraySize, 3); // 新增元素 3
+    ptr = scores;
 
-    // 輸出動態陣列內容
-    printf("動態陣列：");
-    for (int i = 0; i < arraySize; i++) {
-        printf("%d ", dynamicArray[i]);
+    printf("請輸入五門課程的成績：\n");
+    for (int i = 0; i < 5; i++) {
+        printf("請輸入第 %d 門課程的成績：", i + 1);
+        scanf("%d", ptr);
+        total += *ptr;
+        ptr++; // 指標移動到下一個位置
     }
-    printf("\n");
+
+    float average = (float)total / 5;
+
+    printf("\n總分：%d\n", total);
+    printf("平均分數：%.2f\n", average);
 
     return 0;
 }
